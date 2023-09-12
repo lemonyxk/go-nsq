@@ -113,7 +113,7 @@ type Config struct {
 	LookupdPollTimeout  time.Duration `opt:"lookupd_poll_timeout" default:"1m"`
 
 	// Maximum duration when REQueueing (for doubling of deferred requeue)
-	MaxRequeueDelay     time.Duration `opt:"max_requeue_delay" min:"0" max:"60m" default:"15m"`
+	MaxRequeueDelay     time.Duration `opt:"max_requeue_delay" min:"0" max:"24h" default:"15m"`
 	DefaultRequeueDelay time.Duration `opt:"default_requeue_delay" min:"0" max:"60m" default:"90s"`
 
 	// Backoff strategy, defaults to exponential backoff. Overwrite this to define alternative backoff algrithms.
@@ -208,15 +208,15 @@ func NewConfig() *Config {
 //
 // Calls to Set() that take a time.Duration as an argument can be input as:
 //
-// 	"1000ms" (a string parsed by time.ParseDuration())
-// 	1000 (an integer interpreted as milliseconds)
-// 	1000*time.Millisecond (a literal time.Duration value)
+//	"1000ms" (a string parsed by time.ParseDuration())
+//	1000 (an integer interpreted as milliseconds)
+//	1000*time.Millisecond (a literal time.Duration value)
 //
 // Calls to Set() that take bool can be input as:
 //
-// 	"true" (a string parsed by strconv.ParseBool())
-// 	true (a boolean)
-// 	1 (an int where 1 == true and 0 == false)
+//	"true" (a string parsed by strconv.ParseBool())
+//	true (a boolean)
+//	1 (an int where 1 == true and 0 == false)
 //
 // It returns an error for an invalid option or value.
 func (c *Config) Set(option string, value interface{}) error {
