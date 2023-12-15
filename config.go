@@ -113,7 +113,7 @@ type Config struct {
 	LookupdPollTimeout  time.Duration `opt:"lookupd_poll_timeout" default:"1m"`
 
 	// Maximum duration when REQueueing (for doubling of deferred requeue)
-	MaxRequeueDelay     time.Duration `opt:"max_requeue_delay" min:"0" max:"24h" default:"15m"`
+	MaxRequeueDelay     time.Duration `opt:"max_requeue_delay" min:"0" max:"61320h" default:"15m"`
 	DefaultRequeueDelay time.Duration `opt:"default_requeue_delay" min:"0" max:"60m" default:"90s"`
 
 	// Backoff strategy, defaults to exponential backoff. Overwrite this to define alternative backoff algrithms.
